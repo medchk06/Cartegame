@@ -9,7 +9,7 @@ Un jeu de cartes interactif pour créer des liens profonds entre amis.
 - Interface moderne et responsive
 
 ## 🎮 Jouer
-[Lien vers ton jeu](https://tonusername.github.io/connexions-authentiques)
+[[Lien vers ton jeu](https://tonusername.github.io/connexions-authentiques)](https://medchk06.github.io/Cartegame/)
 
 ## 📱 Comment jouer à distance
 1. Ouvre le lien sur ton téléphone/ordinateur

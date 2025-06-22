@@ -4,242 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexions Authentiques - Jeu de Cartes</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .header {
-            text-align: center;
-            color: white;
-            margin-bottom: 30px;
-        }
-
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .header p {
-            font-size: 1.2em;
-            opacity: 0.9;
-        }
-
-        .game-controls {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 25px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .btn-primary {
-            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
-            color: white;
-            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
-        }
-
-        .btn-secondary {
-            background: white;
-            color: #667eea;
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-        }
-
-        .card-display {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 30px;
-        }
-
-        .card {
-            width: 350px;
-            height: 500px;
-            border-radius: 20px;
-            padding: 40px;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            transform: perspective(1000px) rotateY(0deg);
-            transition: all 0.6s ease;
-            cursor: pointer;
-        }
-
-        .card:hover {
-            transform: perspective(1000px) rotateY(5deg) translateY(-10px);
-        }
-
-        .card-blue {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        }
-
-        .card-red {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
-        }
-
-        .card-green {
-            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-        }
-
-        .card-purple {
-            background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);
-        }
-
-        .card-type {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 14px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            opacity: 0.8;
-        }
-
-        .card-question {
-            font-size: 24px;
-            line-height: 1.4;
-            font-weight: 500;
-            margin: 20px 0;
-        }
-
-        .card-subtitle {
-            font-size: 16px;
-            opacity: 0.8;
-            font-style: italic;
-            margin-top: 20px;
-        }
-
-        .rules {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 30px;
-            margin: 20px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .rules h3 {
-            color: #667eea;
-            margin-bottom: 20px;
-            font-size: 1.5em;
-            text-align: center;
-        }
-
-        .rules-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .rule-item {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-        }
-
-        .rule-item h4 {
-            margin-bottom: 10px;
-            font-size: 1.1em;
-        }
-
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
-
-        .stat {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            min-width: 120px;
-        }
-
-        .stat-number {
-            font-size: 2em;
-            font-weight: 700;
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 0.9em;
-            opacity: 0.8;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        @media (max-width: 768px) {
-            .card {
-                width: 300px;
-                height: 450px;
-                padding: 30px;
-            }
-            
-            .card-question {
-                font-size: 20px;
-            }
-            
-            .header h1 {
-                font-size: 2em;
-            }
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .fade-in {
-            animation: fadeIn 0.5s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
@@ -254,14 +19,37 @@
                 <span class="stat-label">Cartes Jouées</span>
             </div>
             <div class="stat">
-                <span class="stat-number">200</span>
+                <span class="stat-number" id="totalCards">200</span>
                 <span class="stat-label">Questions</span>
             </div>
+        </div>
+
+        <!-- Sélecteur de niveau de profondeur -->
+        <div class="depth-selector">
+            <div class="depth-option active" data-depth="all">Tous niveaux</div>
+            <div class="depth-option" data-depth="light">Léger (1-10)</div>
+            <div class="depth-option" data-depth="personal">Personnel (11-25)</div>
+            <div class="depth-option" data-depth="deep">Profond (26-40)</div>
+            <div class="depth-option" data-depth="intimate">Intime (41-50)</div>
+        </div>
+
+        <!-- Mode multijoueur -->
+        <div class="multiplayer-section hidden" id="multiplayerSection">
+            <h3>🎮 Mode Multijoueur</h3>
+            <div class="player-setup">
+                <input type="text" class="player-input" id="playerNameInput" placeholder="Nom du joueur">
+                <button class="btn-deck" onclick="addPlayer()">Ajouter Joueur</button>
+                <button class="btn-deck" onclick="startMultiplayer()">Commencer</button>
+            </div>
+            <div class="players-list" id="playersList"></div>
+            <div class="current-player hidden" id="currentPlayerDisplay"></div>
         </div>
 
         <div class="game-controls">
             <button class="btn btn-primary" onclick="drawCard()">🎯 Nouvelle Carte</button>
             <button class="btn btn-secondary" onclick="toggleRules()">📋 Règles</button>
+            <button class="btn btn-secondary" onclick="toggleMultiplayer()">👥 Multijoueur</button>
+            <button class="btn btn-secondary" onclick="toggleCustomDeck()">🎨 Deck Perso</button>
         </div>
 
         <div class="card-display">
@@ -272,6 +60,25 @@
                 </div>
                 <div class="card-subtitle">Clique sur "Nouvelle Carte" pour commencer</div>
             </div>
+        </div>
+
+        <!-- Section Deck Personnalisé -->
+        <div class="custom-deck-section hidden" id="customDeckSection">
+            <h3>🎨 Créer un Deck Personnalisé</h3>
+            <div class="deck-input-group">
+                <input type="text" class="deck-input" id="customQuestionInput" placeholder="Écris ta question personnalisée...">
+                <select class="deck-select" id="customCardType">
+                    <option value="blue">Bleue - Découverte</option>
+                    <option value="red">Rouge - Défi</option>
+                    <option value="green">Verte - Rêves</option>
+                    <option value="purple">Violette - Souvenirs</option>
+                    <option value="joker">Joker - Action</option>
+                </select>
+                <button class="btn-deck" onclick="addCustomCard()">Ajouter</button>
+            </div>
+            <button class="btn-deck" onclick="useCustomDeck()">Utiliser ce Deck</button>
+            <button class="btn-deck" onclick="resetToOriginalDeck()">Deck Original</button>
+            <div class="custom-cards-list" id="customCardsList"></div>
         </div>
 
         <div class="rules hidden" id="rulesSection">
@@ -297,6 +104,10 @@
                     <h4>🟣 Cartes Violettes</h4>
                     <p>Souvenirs, enfance et moments marquants</p>
                 </div>
+                <div class="rule-item">
+                    <h4>🃏 Cartes Joker</h4>
+                    <p>Actions spéciales et interactions créatives</p>
+                </div>
             </div>
 
             <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 15px; color: #666;">
@@ -318,307 +129,8 @@
         </div>
     </div>
 
-    <script>
-        const cards = {
-            blue: [
-                // Niveau 1-10 : Découverte légère
-                "Quel est ton plat préféré et pourquoi ?",
-                "Si tu pouvais voyager n'importe où demain, où irais-tu ?",
-                "Quelle est ta série ou ton film préféré en ce moment ?",
-                "Quel est ton talent caché ?",
-                "Quelle est ta saison préférée et pourquoi ?",
-                "Si tu pouvais avoir un super-pouvoir, lequel choisirais-tu ?",
-                "Quel est ton animal de compagnie idéal ?",
-                "Quelle est ta chanson qui te met toujours de bonne humeur ?",
-                "Si tu pouvais apprendre une nouvelle langue, laquelle ?",
-                "Quel est ton type de vacances idéal ?",
-                
-                // Niveau 11-20 : Approfondissement
-                "Si tu pouvais dîner avec une personne célèbre, qui choisirais-tu ?",
-                "Quelle est la chose la plus spontanée que tu aies faite ?",
-                "Quel est ton rêve d'enfance que tu aimerais réaliser ?",
-                "Si tu pouvais changer une chose sur toi physiquement, que serait-ce ?",
-                "Quelle est ta plus grande peur irrationnelle ?",
-                "Décris-toi en trois mots que tes amis utiliseraient.",
-                "Quel est le compliment qui t'a le plus marqué ?",
-                "Si tu écrivais un livre, de quoi parlerait-il ?",
-                "Quelle est ta façon préférée de décompresser après une journée difficile ?",
-                "Si tu pouvais maîtriser n'importe quelle compétence, laquelle ?",
-                
-                // Niveau 21-30 : Introspection
-                "Quelle est la leçon la plus importante que la vie t'a enseignée ?",
-                "Décris un moment où tu t'es senti vraiment fier de toi.",
-                "Quelle est ta plus grande motivation dans la vie ?",
-                "Si tu pouvais changer une chose dans le monde, que serait-ce ?",
-                "Quel trait de caractère admires-tu le plus chez les autres ?",
-                "Quelle est ta définition du bonheur ?",
-                "Décris un moment où tu as complètement changé d'avis sur quelque chose.",
-                "Quelle est ta plus grande source d'inspiration ?",
-                "Comment gères-tu le stress et l'anxiété ?",
-                "Quel est ton plus grand accomplissement personnel ?",
-                
-                // Niveau 31-40 : Vulnérabilité modérée
-                "Raconte un moment où tu t'es senti vraiment incompris.",
-                "Quelle est ta plus grande insécurité sociale ?",
-                "Décris une fois où tu as dû surmonter une peur importante.",
-                "Quel aspect de ta personnalité aimerais-tu changer ?",
-                "Raconte un moment où tu as ressenti une profonde gratitude.",
-                "Quelle est la chose la plus difficile que tu aies eu à accepter sur toi ?",
-                "Décris un moment où tu t'es senti complètement authentique.",
-                "Quelle est ta plus grande difficulté dans les relations ?",
-                "Raconte une fois où tu as dû faire un choix très difficile.",
-                "Quel est ton plus grand regret en amitié ?",
-                
-                // Niveau 41-50 : Intimité profonde
-                "Quelle partie de toi caches-tu le plus aux autres ?",
-                "Raconte le moment où tu t'es senti le plus vulnérable.",
-                "Quelle est la vérité sur toi que tu as le plus de mal à admettre ?",
-                "Décris un moment où tu as eu honte de toi-même.",
-                "Quel est le mensonge que tu te racontes le plus souvent ?",
-                "Raconte une fois où tu as vraiment déçu quelqu'un d'important.",
-                "Quelle est ta peur la plus profonde concernant l'avenir ?",
-                "Décris un moment où tu t'es senti complètement seul(e).",
-                "Quel secret gardes-tu que personne ne connaît ?",
-                "Quelle est la chose la plus courageuse que tu aies jamais faite émotionnellement ?"
-            ],
-            red: [
-                // Niveau 1-10 : Défis légers
-                "Raconte une fois où tu as fait quelque chose d'embarrassant en public.",
-                "Quel est ton plus gros mensonge innocent ?",
-                "Décris une fois où tu as eu tort mais n'as pas voulu l'admettre.",
-                "Raconte un moment où tu as jugé quelqu'un trop vite.",
-                "Quelle est ta mauvaise habitude la plus agaçante ?",
-                "Décris une fois où tu as procrastiné sur quelque chose d'important.",
-                "Raconte un moment où tu as été jaloux de quelqu'un proche.",
-                "Quel est ton plus grand échec culinaire ?",
-                "Décris une fois où tu as dit quelque chose que tu regrettes.",
-                "Raconte un moment où tu as eu peur de quelque chose de stupide.",
-                
-                // Niveau 11-20 : Erreurs et apprentissages
-                "Raconte un moment où tu as échoué à quelque chose d'important.",
-                "Décris une fois où tu as blessé quelqu'un sans le vouloir.",
-                "Quel est ton plus grand regret professionnel ou scolaire ?",
-                "Raconte un moment où tu as menti pour éviter les ennuis.",
-                "Décris une fois où tu as abandonné quelque chose trop facilement.",
-                "Quel est le pire conseil que tu aies donné à quelqu'un ?",
-                "Raconte un moment où tu as été hypocrite.",
-                "Décris une fois où tu as laissé tomber un ami.",
-                "Quel est ton plus grand regret en amour ?",
-                "Raconte un moment où tu as eu honte de ta réaction.",
-                
-                // Niveau 21-30 : Luttes internes
-                "Décris une période où tu as lutté contre tes propres pensées.",
-                "Raconte un moment où tu t'es senti complètement perdu.",
-                "Quelle est ta plus grande insécurité physique ?",
-                "Décris une fois où tu as eu des pensées très négatives sur toi.",
-                "Raconte un moment où tu as eu peur de ne pas être à la hauteur.",
-                "Quelle est la critique qui t'a le plus blessé ?",
-                "Décris une période où tu t'es senti invisible.",
-                "Raconte un moment où tu as douté de tes capacités.",
-                "Quelle est ta plus grande peur concernant l'opinion des autres ?",
-                "Décris une fois où tu t'es comparé négativement à quelqu'un.",
-                
-                // Niveau 31-40 : Blessures profondes
-                "Raconte un moment où tu t'es senti trahi par quelqu'un de proche.",
-                "Décris une période sombre de ta vie.",
-                "Quel est le moment où tu t'es senti le plus rejeté ?",
-                "Raconte une fois où tu as ressenti une colère profonde.",
-                "Décris un moment où tu as eu envie de tout abandonner.",
-                "Quelle est la plus grande déception que tu aies vécue ?",
-                "Raconte un moment où tu t'es senti complètement incompris.",
-                "Décris une fois où tu as pleuré seul(e).",
-                "Quel est ton plus grand échec relationnel ?",
-                "Raconte un moment où tu as ressenti une solitude profonde.",
-                
-                // Niveau 41-50 : Vulnérabilité extrême
-                "Décris le moment le plus difficile de ta vie.",
-                "Raconte une fois où tu as pensé que tu n'étais pas assez bien.",
-                "Quelle est la chose la plus difficile que tu aies eu à pardonner ?",
-                "Décris un moment où tu as eu peur de toi-même.",
-                "Raconte une fois où tu as voulu disparaître complètement.",
-                "Quelle est ta plus grande honte personnelle ?",
-                "Décris un moment où tu as ressenti du désespoir.",
-                "Raconte une fois où tu as eu l'impression d'être un fardeau.",
-                "Quelle est la pensée la plus sombre que tu aies eue sur toi ?",
-                "Décris le moment où tu t'es senti le plus vulnérable et effrayé."
-            ],
-            green: [
-                // Niveau 1-10 : Rêves simples
-                "Où aimerais-tu voyager l'année prochaine ?",
-                "Quel métier aimerais-tu essayer pendant une semaine ?",
-                "Comment aimerais-tu passer ton week-end idéal ?",
-                "Quelle compétence aimerais-tu développer cette année ?",
-                "Quel type de maison aimerais-tu avoir un jour ?",
-                "Si tu avais plus de temps libre, comment l'utiliserais-tu ?",
-                "Quel hobby aimerais-tu commencer ?",
-                "Comment aimerais-tu célébrer ton prochain anniversaire ?",
-                "Quel projet créatif aimerais-tu réaliser ?",
-                "Où te vois-tu vivre dans 5 ans ?",
-                
-                // Niveau 11-20 : Ambitions personnelles
-                "Quel impact aimerais-tu avoir sur ton entourage ?",
-                "Si l'argent n'était pas un problème, que ferais-tu de ta vie ?",
-                "Quelle tradition aimerais-tu créer pour ta famille future ?",
-                "Comment aimerais-tu évoluer personnellement dans les prochaines années ?",
-                "Quel rêve d'enfance aimerais-tu encore réaliser ?",
-                "Comment veux-tu que tes amis se souviennent de toi ?",
-                "Quelle cause aimerais-tu soutenir davantage ?",
-                "Quel type de relation amoureuse veux-tu construire ?",
-                "Comment aimerais-tu contribuer à ta communauté ?",
-                "Quelle version améliorée de toi veux-tu devenir ?",
-                
-                // Niveau 21-30 : Vision de vie
-                "Quel héritage veux-tu laisser après ta mort ?",
-                "Comment définis-tu une vie réussie pour toi ?",
-                "Quelles valeurs veux-tu transmettre à la génération suivante ?",
-                "Quel changement veux-tu voir dans le monde de ton vivant ?",
-                "Comment veux-tu vieillir et à quoi ressemblera ta retraite ?",
-                "Quelle sagesse espères-tu acquérir avec l'âge ?",
-                "Quel type de grand-parent ou mentor veux-tu être ?",
-                "Comment veux-tu que le monde soit différent grâce à ton passage ?",
-                "Quelle est ta vision du bonheur à long terme ?",
-                "Quel message veux-tu laisser aux générations futures ?",
-                
-                // Niveau 31-40 : Aspirations profondes
-                "Quel aspect de toi veux-tu guérir ou transformer complètement ?",
-                "Comment veux-tu surmonter tes plus grandes peurs ?",
-                "Quelle relation veux-tu réparer ou approfondir dans ta vie ?",
-                "Quel pardon veux-tu demander ou accorder dans le futur ?",
-                "Comment veux-tu utiliser tes blessures passées pour aider les autres ?",
-                "Quelle partie de ton âme veux-tu nourrir davantage ?",
-                "Comment veux-tu honorer les personnes importantes que tu as perdues ?",
-                "Quel courage veux-tu trouver pour changer ta vie ?",
-                "Comment veux-tu réconcilier tes rêves avec tes peurs ?",
-                "Quelle vérité sur toi veux-tu enfin accepter et embrasser ?",
-                
-                // Niveau 41-50 : Transformation spirituelle
-                "Si tu savais que tu allais mourir dans 10 ans, comment changerais-tu ta vie ?",
-                "Quel appel profond de ton âme ignores-tu encore ?",
-                "Comment veux-tu transformer ta douleur en force pour les autres ?",
-                "Quelle peur dois-tu absolument dépasser pour vivre pleinement ?",
-                "Comment veux-tu réinventer complètement ta vie ?",
-                "Quel sacrifice es-tu prêt(e) à faire pour tes rêves les plus profonds ?",
-                "Comment veux-tu faire la paix avec ton passé et ton futur ?",
-                "Quelle est ta mission de vie la plus authentique ?",
-                "Comment veux-tu transcender tes limitations actuelles ?",
-                "Si tu pouvais recommencer ta vie, que ferais-tu différemment et comment l'appliques-tu maintenant ?"
-            ],
-            purple: [
-                // Niveau 1-10 : Souvenirs doux
-                "Quel est ton plus beau souvenir de vacances en famille ?",
-                "Raconte ton anniversaire d'enfance le plus mémorable.",
-                "Quel était ton jouet préféré et pourquoi ?",
-                "Décris ta chambre d'enfant idéale.",
-                "Quel était ton livre ou histoire préférée quand tu étais petit(e) ?",
-                "Raconte une tradition familiale que tu aimais.",
-                "Quel était ton plat préféré que préparait ta famille ?",
-                "Décris ton ami d'enfance le plus proche.",
-                "Quel était ton endroit secret préféré quand tu étais enfant ?",
-                "Raconte un moment où tu te sentais parfaitement heureux étant petit(e).",
-                
-                // Niveau 11-20 : Influences formatives
-                "Qui a été ton héros ou modèle dans l'enfance ?",
-                "Quelle leçon de tes parents portes-tu encore aujourd'hui ?",
-                "Raconte un moment où tu t'es senti très fier étant enfant.",
-                "Quel adulte, en dehors de ta famille, t'a marqué positivement ?",
-                "Décris un moment où tu as appris quelque chose d'important sur la vie.",
-                "Quelle règle de famille trouvais-tu la plus stupide à l'époque ?",
-                "Raconte une fois où tes parents t'ont vraiment surpris.",
-                "Quel conseil d'enfance suis-tu encore aujourd'hui ?",
-                "Décris un moment où tu as découvert que tes parents n'étaient pas parfaits.",
-                "Quelle phrase de ton enfance t'a marqué à vie ?",
-                
-                // Niveau 21-30 : Moments charnières
-                "Raconte le moment où tu as commencé à grandir vraiment.",
-                "Décris une expérience d'enfance qui a changé ta vision du monde.",
-                "Quel événement de ton enfance comprends-tu mieux maintenant ?",
-                "Raconte un moment où tu t'es senti très adulte étant encore enfant.",
-                "Décris une peur d'enfance qui influence encore ta vie aujourd'hui.",
-                "Quel moment d'enfance aimerais-tu revivre avec ta compréhension actuelle ?",
-                "Raconte une fois où tu as dû faire face à l'injustice étant enfant.",
-                "Décris le moment où tu as réalisé que tes parents étaient humains.",
-                "Quel rêve d'enfant as-tu abandonné et pourquoi ?",
-                "Raconte un moment où tu as ressenti une émotion très forte pour la première fois.",
-                
-                // Niveau 31-40 : Blessures d'enfance
-                "Décris un moment d'enfance où tu t'es senti profondément incompris.",
-                "Raconte une fois où tu as été blessé par quelqu'un en qui tu avais confiance.",
-                "Quel aspect de ton enfance a été le plus difficile ?",
-                "Décris un moment où tu t'es senti seul ou abandonné étant enfant.",
-                "Raconte une expérience d'enfance qui t'a fait perdre ton innocence.",
-                "Quel reproche d'enfance portes-tu encore envers tes parents ?",
-                "Décris un moment où tu as eu honte de ta famille ou de toi-même.",
-                "Raconte une fois où tu as ressenti une grande injustice étant enfant.",
-                "Quel secret d'enfance n'as-tu jamais partagé ?",
-                "Décris le moment le plus effrayant de ton enfance.",
-                
-                // Niveau 41-50 : Guérison et réconciliation
-                "Quelle blessure d'enfance influences encore tes relations aujourd'hui ?",
-                "Raconte un moment d'enfance que tu aimerais guérir en toi.",
-                "Quel pardon dois-tu encore accorder à ton enfance ou tes parents ?",
-                "Décris comment ton enfant intérieur se manifeste encore aujourd'hui.",
-                "Quel aspect de ton enfance as-tu du mal à accepter ?",
-                "Raconte un moment où tu as compris la douleur de tes parents.",
-                "Quelle part de ton enfance dois-tu encore honorer et intégrer ?",
-                "Décris comment tu veux réparer les blessures de ton enfance.",
-                "Quel message veux-tu envoyer à ton enfant intérieur ?",
-                "Comment ton enfance a-t-elle façonné tes plus grandes peurs et tes plus grands rêves ?"
-            ]
-        };
-
-        const cardTypes = ['blue', 'red', 'green', 'purple'];
-        const cardClasses = ['card-blue', 'card-red', 'card-green', 'card-purple'];
-        const cardLabels = ['Découverte', 'Vulnérabilité', 'Avenir', 'Souvenirs'];
-        
-        let cardCount = 0;
-        let usedCards = { blue: [], red: [], green: [], purple: [] };
-
-        function drawCard() {
-            const randomType = cardTypes[Math.floor(Math.random() * cardTypes.length)];
-            const availableCards = cards[randomType].filter((_, index) => !usedCards[randomType].includes(index));
-            
-            if (availableCards.length === 0) {
-                // Reset if all cards of this type are used
-                usedCards[randomType] = [];
-                availableCards.push(...cards[randomType]);
-            }
-            
-            const randomIndex = Math.floor(Math.random() * availableCards.length);
-            const selectedCard = availableCards[randomIndex];
-            const originalIndex = cards[randomType].indexOf(selectedCard);
-            usedCards[randomType].push(originalIndex);
-            
-            const card = document.getElementById('currentCard');
-            const typeIndex = cardTypes.indexOf(randomType);
-            
-            // Animation effect
-            card.style.transform = 'rotateY(90deg)';
-            
-            setTimeout(() => {
-                card.className = `card ${cardClasses[typeIndex]} fade-in`;
-                card.innerHTML = `
-                    <div class="card-type">${cardLabels[typeIndex]}</div>
-                    <div class="card-question">${selectedCard}</div>
-                    <div class="card-subtitle">Prenez le temps de vraiment réfléchir...</div>
-                `;
-                card.style.transform = 'rotateY(0deg)';
-                
-                cardCount++;
-                document.getElementById('cardCount').textContent = cardCount;
-            }, 300);
-        }
-
-        function toggleRules() {
-            const rules = document.getElementById('rulesSection');
-            rules.classList.toggle('hidden');
-        }
-
-        // Add click event to card for mobile users
-        document.getElementById('currentCard').addEventListener('click', function() {
-            if (this.querySelector('.card-type').textContent === 'Bienvenue') {
-                drawCard();
-            }
-        });
-    </script>
+    <script src="data/cards.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
+
